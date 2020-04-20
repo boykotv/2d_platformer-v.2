@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     private bool attack;
 
+    private bool slide;
+
     private bool facingRight;
 
     // Start is called before the first frame update
@@ -40,10 +42,20 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(float horizontal)
     {
-        if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (!this.myAnimator.GetBool("slide") && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
         }
+
+        if (slide && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
+        {
+            myAnimator.SetBool("slide", true);
+        }
+        else if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) 
+        {
+            myAnimator.SetBool("slide", false);
+        }
+
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
@@ -60,8 +72,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //attack
             attack = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            slide = true;
         }
     }
 
@@ -79,5 +95,6 @@ public class Player : MonoBehaviour
     private void ResetValues()
     {
         attack = false;
+        slide = false;
     }
 }
