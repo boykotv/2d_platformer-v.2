@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
 
     private void HandleMovement(float horizontal)
     {
-        if (!this.myAnimator.GetBool("slide") && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        if (!myAnimator.GetBool("slide") && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
             myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
         }
@@ -51,10 +51,13 @@ public class Player : MonoBehaviour
         {
             myAnimator.SetBool("slide", true);
         }
-        else if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide")) 
+        else if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
         {
             myAnimator.SetBool("slide", false);
         }
+
+
+
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
     }
