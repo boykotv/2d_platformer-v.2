@@ -1868,6 +1868,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
+  airControl: 0
   jumpForce: 400
 --- !u!61 &1546536838
 BoxCollider2D:
