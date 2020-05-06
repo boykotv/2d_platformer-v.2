@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D myRigidbody;
-
     private Animator myAnimator;
 
     [SerializeField]
     private float movementSpeed;
-
-    private bool attack;
-
-    private bool slide;
 
     private bool facingRight;
 
@@ -26,23 +20,30 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
-    private bool isGrounded;
-
-    private bool jump;
-
-    private bool jumpAttack;
-
     [SerializeField]
     private bool airControl;
 
     [SerializeField]
     private float jumpForce;
 
+    public Rigidbody2D MyRigidbody { get; set; }
+
+    public bool Attack { get; set; }
+
+    public bool Slide { get; set; }
+
+    public bool Jump { get; set; }
+
+    public bool OnGround { get; set; }
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         facingRight = true;
-        myRigidbody = GetComponent<Rigidbody2D>();
+        MyRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -56,84 +57,46 @@ public class Player : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
 
-        isGrounded = IsGrounded();
+        OnGround = IsGrounded();
 
         HandleMovement(horizontal);
         Flip(horizontal);
-        HandleAttacks();
         HandleLayers();
-        ResetValues();
     }
 
     private void HandleMovement(float horizontal)
     {
-        if (myRigidbody.velocity.y < 0)
+        if (MyRigidbody.velocity.y < 0)
         {
             myAnimator.SetBool("land", true);
         }
-
-        if (!myAnimator.GetBool("slide") && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") && (isGrounded || airControl))
+        if (!Attack && !Slide && (OnGround || airControl))
         {
-            myRigidbody.velocity = new Vector2(horizontal * movementSpeed, myRigidbody.velocity.y);
+            MyRigidbody.velocity = new Vector2(horizontal * movementSpeed, MyRigidbody.velocity.y); 
         }
-
-        if (isGrounded && jump)
+        if (Jump && MyRigidbody.velocity.y == 0)
         {
-            isGrounded = false;
-            myRigidbody.AddForce(new Vector2(0, jumpForce));
-            myAnimator.SetTrigger("jump");
+            MyRigidbody.AddForce(new Vector2(0, jumpForce));
         }
-
-        if (slide && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
-        {
-            myAnimator.SetBool("slide", true);
-        }
-        else if (!this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
-        {
-            myAnimator.SetBool("slide", false);
-        }
-
-
-
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
-    }
-
-    private void HandleAttacks()
-    {
-        if (attack && isGrounded && !this.myAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
-        {
-            myAnimator.SetTrigger("attack");
-            myRigidbody.velocity = Vector2.zero;
-        }
-
-        if (jumpAttack && !isGrounded && !this.myAnimator.GetCurrentAnimatorStateInfo(1).IsName("JumpAttack"))
-        {
-            myAnimator.SetBool("jumpAttack", true);
-        }
-
-        if(!jumpAttack && !this.myAnimator.GetCurrentAnimatorStateInfo(1).IsName("JumpAttack"))
-        {
-            myAnimator.SetBool("jumpAttack", false);
-        }
     }
 
     private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
+            
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            attack = true;
-            jumpAttack = true;
+           
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            slide = true;
+           
         }
     }
 
@@ -148,17 +111,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ResetValues()
-    {
-        attack = false;
-        slide = false;
-        jump = false;
-        jumpAttack = false;
-    }
-
     private bool IsGrounded()
     {
-        if (myRigidbody.velocity.y <=0)
+        if (MyRigidbody.velocity.y <=0)
         {
             foreach (Transform point in groundPoints)
             {
@@ -168,8 +123,6 @@ public class Player : MonoBehaviour
                 {
                     if (colliders[i].gameObject != gameObject)
                     {
-                        myAnimator.ResetTrigger("jump");
-                        myAnimator.SetBool("land", false);
                         return true;
                     }
                 }
@@ -180,7 +133,7 @@ public class Player : MonoBehaviour
 
     private void HandleLayers()
     {
-        if (!isGrounded)
+        if (!OnGround)
         {
             myAnimator.SetLayerWeight(1, 1);
         }
