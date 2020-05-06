@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    private static Player instance;
+
+    public static Player Instance 
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<Player>();
+            }
+            return instance;
+        }
+    }
+
     private Animator myAnimator;
 
     [SerializeField]
@@ -35,9 +50,6 @@ public class Player : MonoBehaviour
     public bool Jump { get; set; }
 
     public bool OnGround { get; set; }
-
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -86,17 +98,17 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
+            myAnimator.SetTrigger("jump");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-           
+            myAnimator.SetTrigger("attack");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-           
+            myAnimator.SetTrigger("slide");
         }
     }
 
