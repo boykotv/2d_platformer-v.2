@@ -41,6 +41,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpForce;
 
+    [SerializeField]
+    private GameObject arrowPrepfab;
+
     public Rigidbody2D MyRigidbody { get; set; }
 
     public bool Attack { get; set; }
@@ -113,6 +116,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             myAnimator.SetTrigger("bow");
+            ShootAnArrow(0);
         }
     }
 
@@ -156,6 +160,20 @@ public class Player : MonoBehaviour
         else
         {
             myAnimator.SetLayerWeight(1, 0);
+        }
+    }
+
+    public void ShootAnArrow(int value)
+    {
+        if (facingRight)
+        {
+            GameObject tmp = Instantiate(arrowPrepfab, transform.position, Quaternion.identity);
+            tmp.GetComponent<Arrow>().Initialize(Vector2.right);
+        }
+        else
+        {
+            GameObject tmp = Instantiate(arrowPrepfab, transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
+            tmp.GetComponent<Arrow>().Initialize(Vector2.left);
         }
     }
 

@@ -2770,6 +2770,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   airControl: 0
   jumpForce: 300
+  arrowPrepfab: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
+    type: 3}
 --- !u!61 &1546536838
 BoxCollider2D:
   m_ObjectHideFlags: 0
