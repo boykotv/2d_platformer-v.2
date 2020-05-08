@@ -25,6 +25,7 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         Player.Instance.Attack = false;
         animator.ResetTrigger("attack");
+        animator.ResetTrigger("bow");
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

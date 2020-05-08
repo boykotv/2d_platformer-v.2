@@ -110,6 +110,10 @@ public class Player : MonoBehaviour
         {
             myAnimator.SetTrigger("slide");
         }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            myAnimator.SetTrigger("bow");
+        }
     }
 
     private void Flip(float horizontal)
