@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     private Animator myAnimator;
 
     [SerializeField]
+    private Transform arrowPos;
+
+    [SerializeField]
     private float movementSpeed;
 
     private bool facingRight;
@@ -116,7 +119,6 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             myAnimator.SetTrigger("bow");
-            ShootAnArrow(0);
         }
     }
 
@@ -165,16 +167,19 @@ public class Player : MonoBehaviour
 
     public void ShootAnArrow(int value)
     {
-        if (facingRight)
+        if (!OnGround && value == 1 || OnGround && value == 0)
         {
-            GameObject tmp = Instantiate(arrowPrepfab, transform.position, Quaternion.identity);
-            tmp.GetComponent<Arrow>().Initialize(Vector2.right);
-        }
-        else
-        {
-            GameObject tmp = Instantiate(arrowPrepfab, transform.position, Quaternion.Euler(new Vector3(0, 0, 180)));
-            tmp.GetComponent<Arrow>().Initialize(Vector2.left);
-        }
+            if (facingRight)
+            {
+                GameObject tmp = Instantiate(arrowPrepfab, arrowPos.position, Quaternion.identity);
+                tmp.GetComponent<Arrow>().Initialize(Vector2.right);
+            }
+            else
+            {
+                GameObject tmp = Instantiate(arrowPrepfab, arrowPos.position, Quaternion.Euler(new Vector3(0, 0, 180)));
+                tmp.GetComponent<Arrow>().Initialize(Vector2.left);
+            }
+        }        
     }
 
 }
