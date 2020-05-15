@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    protected Animator myAnimator;
 
     [SerializeField]
     protected Transform arrowPos;
@@ -19,15 +18,12 @@ public abstract class Character : MonoBehaviour
 
     public bool Attack { get; set; }
 
+    public Animator MyAnimator { get; private set; }
 
-
-
-    // Start is called before the first frame update
     public virtual void Start()
     {
-        Debug.Log("CharacterStart");
         facingRight = true;
-        myAnimator = GetComponent<Animator>();
+        MyAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,9 +37,6 @@ public abstract class Character : MonoBehaviour
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
     }
-
-
-
 
     public virtual void ShootAnArrow(int value)
     {
