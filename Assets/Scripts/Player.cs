@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
 
     private static Player instance;
@@ -19,16 +19,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private Animator myAnimator;
-
-    [SerializeField]
-    private Transform arrowPos;
-
-    [SerializeField]
-    private float movementSpeed;
-
-    private bool facingRight;
-
     [SerializeField]
     private Transform[] groundPoints;
 
@@ -44,12 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpForce;
 
-    [SerializeField]
-    private GameObject arrowPrepfab;
-
     public Rigidbody2D MyRigidbody { get; set; }
-
-    public bool Attack { get; set; }
 
     public bool Slide { get; set; }
 
@@ -58,11 +43,11 @@ public class Player : MonoBehaviour
     public bool OnGround { get; set; }
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        facingRight = true;
+        Debug.Log("PlayerStart");
+        base.Start();
         MyRigidbody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -126,10 +111,7 @@ public class Player : MonoBehaviour
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
         {
-            facingRight = !facingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            ChangeDirection();
         }
     }
 
@@ -165,20 +147,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ShootAnArrow(int value)
+    public override void ShootAnArrow(int value)
     {
         if (!OnGround && value == 1 || OnGround && value == 0)
         {
-            if (facingRight)
-            {
-                GameObject tmp = Instantiate(arrowPrepfab, arrowPos.position, Quaternion.identity);
-                tmp.GetComponent<Arrow>().Initialize(Vector2.right);
-            }
-            else
-            {
-                GameObject tmp = Instantiate(arrowPrepfab, arrowPos.position, Quaternion.Euler(new Vector3(0, 0, 180)));
-                tmp.GetComponent<Arrow>().Initialize(Vector2.left);
-            }
+            base.ShootAnArrow(value);
         }        
     }
 
