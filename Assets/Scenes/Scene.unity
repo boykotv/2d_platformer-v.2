@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 709505132}
   - component: {fileID: 709505131}
   - component: {fileID: 709505133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1748,6 +1748,7 @@ MonoBehaviour:
   movementSpeed: 2
   arrowPrepfab: {fileID: 5191468346734276809, guid: dcc3fea0ad0935646900f553373dd51f,
     type: 3}
+  health: 30
   meleeRange: 0.8
   shootRange: 12
 --- !u!61 &709505131
@@ -2381,7 +2382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1141933353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ArrowPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3194,6 +3195,7 @@ MonoBehaviour:
   movementSpeed: 5
   arrowPrepfab: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
     type: 3}
+  health: 0
   groundPoints:
   - {fileID: 1023995248}
   - {fileID: 398232800}

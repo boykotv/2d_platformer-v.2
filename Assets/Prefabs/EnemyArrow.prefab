@@ -65,7 +65,12 @@ PrefabInstance:
     - target: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
         type: 3}
       propertyPath: m_Name
-      value: Arrow
+      value: EnemyArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
+        type: 3}
+      propertyPath: m_TagString
+      value: EnemyArrow
       objectReference: {fileID: 0}
     - target: {fileID: 8479915218106121213, guid: a5344d97c70ca184182e1308a7d5158e,
         type: 3}

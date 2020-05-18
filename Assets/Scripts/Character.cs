@@ -16,7 +16,14 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected GameObject arrowPrepfab;
 
+    [SerializeField]
+    protected int health;
+
+    public abstract bool IsDead { get; }
+
     public bool Attack { get; set; }
+
+    public bool TakingDamage { get; set; }
 
     public Animator MyAnimator { get; private set; }
 
@@ -31,6 +38,8 @@ public abstract class Character : MonoBehaviour
     {
         
     }
+
+    public abstract IEnumerator TakeDamage();
 
     public void ChangeDirection()
     {
@@ -50,6 +59,14 @@ public abstract class Character : MonoBehaviour
             GameObject tmp = Instantiate(arrowPrepfab, arrowPos.position, Quaternion.Euler(new Vector3(0, 0, 180)));
             tmp.GetComponent<Arrow>().Initialize(Vector2.left);
         }                
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Arrow")
+        {
+            StartCoroutine(TakeDamage());
+        }
     }
 
 }

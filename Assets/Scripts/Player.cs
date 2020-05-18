@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : Character
 {
@@ -153,5 +154,19 @@ public class Player : Character
             base.ShootAnArrow(value);
         }        
     }
+
+    public override IEnumerator TakeDamage()
+    {
+        yield return null;
+    }
+
+    public override bool IsDead 
+    {
+        get
+        {
+            return health <= 0;
+        }
+    }
+
 
 }

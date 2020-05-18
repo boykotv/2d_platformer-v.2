@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : Character
 {
@@ -49,8 +50,14 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        currentState.Execute();
-        LookAtTarget();
+        if (!IsDead)
+        {
+            if (!TakingDamage)
+            {
+                currentState.Execute();
+            }
+            LookAtTarget();
+        }
     }
 
     private void LookAtTarget()
@@ -90,9 +97,32 @@ public class Enemy : Character
         return facingRight ? Vector2.right : Vector2.left;
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    public override void OnTriggerEnter2D(Collider2D other) 
     {
+        base.OnTriggerEnter2D(other);
         currentState.OnTriggerEnter(other);
+    }
+
+    public override IEnumerator TakeDamage()
+    {
+        health -= 10;
+        if (!IsDead)
+        {
+            MyAnimator.SetTrigger("damage");
+        }
+        else
+        {
+            MyAnimator.SetTrigger("die");
+            yield return null;
+        }
+    }
+
+    public override bool IsDead
+    {
+        get
+        {
+            return health <= 0;
+        }
     }
 
 }
