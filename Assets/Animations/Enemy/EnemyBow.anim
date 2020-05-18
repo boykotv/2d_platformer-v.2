@@ -34,7 +34,7 @@ AnimationClip:
     - time: 0.5
       value: {fileID: 21300000, guid: 5767864b9a180f946a1cbee9c28d47f5, type: 3}
     - time: 0.5833333
-      value: {fileID: 21300000, guid: c01d7a05cd12420409c798840cc59dd7, type: 3}
+      value: {fileID: 21300000, guid: 9860df90af45a364a98ffa57c3b83b24, type: 3}
     - time: 0.6666667
       value: {fileID: 21300000, guid: 1425604a8b119c745a269209464ad5ec, type: 3}
     attribute: m_Sprite
@@ -63,7 +63,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 7d3391aa3e480a047b4d3b90326c6a07, type: 3}
     - {fileID: 21300000, guid: ba343ab13ec52454db8a9cf3a5e30fb1, type: 3}
     - {fileID: 21300000, guid: 5767864b9a180f946a1cbee9c28d47f5, type: 3}
-    - {fileID: 21300000, guid: c01d7a05cd12420409c798840cc59dd7, type: 3}
+    - {fileID: 21300000, guid: 9860df90af45a364a98ffa57c3b83b24, type: 3}
     - {fileID: 21300000, guid: 1425604a8b119c745a269209464ad5ec, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -89,4 +89,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.5833333
+    functionName: ShootAnArrow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
