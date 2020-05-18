@@ -18,8 +18,12 @@ public class IdleState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("Idle");
         Idle();
+
+        if (enemy.Target != null)
+        {
+            enemy.ChangeState(new PatrolState());
+        }
     }
 
     public void Exit()
