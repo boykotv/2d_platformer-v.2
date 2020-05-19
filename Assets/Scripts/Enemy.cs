@@ -44,6 +44,7 @@ public class Enemy : Character
     public override void Start()
     {
         base.Start();
+        Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         ChangeState(new IdleState());
     }
 
@@ -58,6 +59,12 @@ public class Enemy : Character
             }
             LookAtTarget();
         }
+    }
+
+    public void RemoveTarget()
+    {
+        Target = null;
+        ChangeState(new PatrolState());
     }
 
     private void LookAtTarget()

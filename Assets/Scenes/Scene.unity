@@ -1815,7 +1815,7 @@ MonoBehaviour:
   - Arrow
   - Sword
   meleeRange: 0.8
-  shootRange: 12
+  shootRange: 5
 --- !u!61 &709505131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3321,7 +3321,7 @@ MonoBehaviour:
   movementSpeed: 5
   arrowPrepfab: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
     type: 3}
-  health: 50
+  health: 30
   swordCollider: {fileID: 1022639849}
   damageSourses:
   - EnemyArrow
@@ -3336,6 +3336,7 @@ MonoBehaviour:
     m_Bits: 55
   airControl: 0
   jumpForce: 300
+  immortalTime: 3
 --- !u!61 &1546536838
 BoxCollider2D:
   m_ObjectHideFlags: 0

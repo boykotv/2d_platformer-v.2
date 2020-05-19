@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public delegate void DeadEventHandler();
+
 public class Player : Character
 {
 
     private static Player instance;
+
+    public event DeadEventHandler Dead;
 
     public static Player Instance 
     {
@@ -35,6 +39,13 @@ public class Player : Character
     [SerializeField]
     private float jumpForce;
 
+    private bool immortal = false;
+
+    [SerializeField]
+    private float immortalTime;
+
+    private SpriteRenderer spriteRenderer;
+
     public Rigidbody2D MyRigidbody { get; set; }
 
     public bool Slide { get; set; }
@@ -43,10 +54,26 @@ public class Player : Character
 
     public bool OnGround { get; set; }
 
+    public override bool IsDead 
+    {
+        get
+        {
+            if (health <= 0)
+            {
+                OnDead();
+            }
+            return health <= 0;
+        }
+    }
+
+    private Vector2 startPos;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        startPos = transform.position;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -54,6 +81,12 @@ public class Player : Character
     {
         if (!TakingDamage && !IsDead)
         {
+            if (transform.position.y <= -14f)
+            {
+                MyRigidbody.velocity = Vector2.zero;
+                transform.position = startPos;
+            }
+
             HandleInput();
         }
     }
@@ -70,6 +103,14 @@ public class Player : Character
             HandleMovement(horizontal);
             Flip(horizontal);
             HandleLayers();
+        }
+    }
+
+    public void OnDead()
+    {
+        if (Dead != null)
+        {
+            Dead();
         }
     }
 
@@ -161,28 +202,40 @@ public class Player : Character
         }        
     }
 
-    public override IEnumerator TakeDamage()
+    private IEnumerator IndicateImmortal()
     {
-        health -= 10;
-        if (!IsDead)
+        while (immortal)
         {
-            MyAnimator.SetTrigger("damage");
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(.1f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(.1f);
         }
-        else
-        {
-            MyAnimator.SetLayerWeight(1, 0);
-            MyAnimator.SetTrigger("die");        
-        }
-        yield return null;
     }
 
-    public override bool IsDead 
+    public override IEnumerator TakeDamage()
     {
-        get
+        if (!immortal)
         {
-            return health <= 0;
+            health -= 10;
+            if (!IsDead)
+            {
+                MyAnimator.SetTrigger("damage");
+                immortal = true;
+
+                StartCoroutine(IndicateImmortal());
+                yield return new WaitForSeconds(immortalTime);
+
+                immortal = false;
+            }
+            else
+            {
+                MyAnimator.SetLayerWeight(1, 0);
+                MyAnimator.SetTrigger("die");        
+            }
         }
     }
+
 
 
 }
