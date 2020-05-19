@@ -52,19 +52,25 @@ public class Player : Character
 
     void Update()
     {
-        HandleInput();
+        if (!TakingDamage && !IsDead)
+        {
+            HandleInput();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+        if (!TakingDamage && !IsDead)
+        {
+            float horizontal = Input.GetAxis("Horizontal");
 
-        OnGround = IsGrounded();
+            OnGround = IsGrounded();
 
-        HandleMovement(horizontal);
-        Flip(horizontal);
-        HandleLayers();
+            HandleMovement(horizontal);
+            Flip(horizontal);
+            HandleLayers();
+        }
     }
 
     private void HandleMovement(float horizontal)
@@ -157,6 +163,16 @@ public class Player : Character
 
     public override IEnumerator TakeDamage()
     {
+        health -= 10;
+        if (!IsDead)
+        {
+            MyAnimator.SetTrigger("damage");
+        }
+        else
+        {
+            MyAnimator.SetLayerWeight(1, 0);
+            MyAnimator.SetTrigger("die");        
+        }
         yield return null;
     }
 
