@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2935254}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GroundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1224,7 +1224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398232800}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GroundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1749,6 +1749,10 @@ MonoBehaviour:
   arrowPrepfab: {fileID: 5191468346734276809, guid: dcc3fea0ad0935646900f553373dd51f,
     type: 3}
   health: 30
+  SwordCollider: {fileID: 0}
+  damageSourses:
+  - Arrow
+  - Sword
   meleeRange: 0.8
   shootRange: 12
 --- !u!61 &709505131
@@ -2302,6 +2306,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1022639847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1022639848}
+  - component: {fileID: 1022639849}
+  m_Layer: 0
+  m_Name: SwordCollider
+  m_TagString: Sword
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1022639848
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022639847}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1546536835}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1022639849
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022639847}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.42, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.7772654, y: -0.58745956}
+  - {x: -0.052403837, y: 0.46299624}
+  - {x: 0.21651039, y: 0.45258713}
+  - {x: 0.30430326, y: 0.419235}
+  - {x: 0.43066844, y: 0.35225654}
+  - {x: 0.57474566, y: 0.20321846}
+  - {x: 0.661139, y: 0.07534623}
+  - {x: 0.64016974, y: -0.268538}
+  - {x: 0.5509858, y: -0.43282175}
+  - {x: 0.3951505, y: -0.57317495}
+  - {x: 0.19052467, y: -0.6807263}
+  - {x: -0.22957888, y: -0.6889851}
+  - {x: -0.76663005, y: -0.61691594}
 --- !u!1 &1023995247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,7 +2376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023995248}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GroundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3129,7 +3193,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ea4c3fee327f3ff42ac58a9ad65d24ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31684be49654ebd4f8789ea64254c7c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3155,6 +3219,7 @@ Transform:
   - {fileID: 398232800}
   - {fileID: 2935254}
   - {fileID: 268371534}
+  - {fileID: 1022639848}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3196,6 +3261,8 @@ MonoBehaviour:
   arrowPrepfab: {fileID: 8363276355837069993, guid: a5344d97c70ca184182e1308a7d5158e,
     type: 3}
   health: 0
+  SwordCollider: {fileID: 1022639849}
+  damageSourses: []
   groundPoints:
   - {fileID: 1023995248}
   - {fileID: 398232800}
@@ -3646,6 +3713,7 @@ GameObject:
   - component: {fileID: 1673149023}
   - component: {fileID: 1673149025}
   - component: {fileID: 1673149024}
+  - component: {fileID: 1673149026}
   m_Layer: 8
   m_Name: Sight
   m_TagString: Untagged
@@ -3706,6 +3774,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 709505130}
+--- !u!114 &1673149026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673149022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e096989cc278c40937cce66a2c00d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 1022639849}
 --- !u!1 &1675559275
 GameObject:
   m_ObjectHideFlags: 0

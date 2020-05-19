@@ -19,6 +19,12 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected int health;
 
+    [SerializeField]
+    private EdgeCollider2D SwordCollider;
+
+    [SerializeField]
+    private List<string> damageSourses = new List<string>();
+
     public abstract bool IsDead { get; }
 
     public bool Attack { get; set; }
@@ -61,9 +67,14 @@ public abstract class Character : MonoBehaviour
         }                
     }
 
+    public void MeleeAttack()
+    {
+        SwordCollider.enabled = !SwordCollider.enabled;
+    }
+
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Arrow")
+        if (damageSourses.Contains(other.tag))
         {
             StartCoroutine(TakeDamage());
         }

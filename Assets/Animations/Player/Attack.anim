@@ -24,7 +24,7 @@ AnimationClip:
     - time: 0.083333336
       value: {fileID: 21300000, guid: dc6f8e0dd13d6b94fb94b8eab7ae1b7c, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: b1d40cdd3aa0e144a9755a0bb0a654f1, type: 3}
+      value: {fileID: 21300000, guid: 6771f25f307b80847b46f533cdad711e, type: 3}
     - time: 0.25
       value: {fileID: 21300000, guid: 635b5274e8f935748877eff4966dfb33, type: 3}
     - time: 0.33333334
@@ -52,7 +52,7 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 21300000, guid: 6771f25f307b80847b46f533cdad711e, type: 3}
     - {fileID: 21300000, guid: dc6f8e0dd13d6b94fb94b8eab7ae1b7c, type: 3}
-    - {fileID: 21300000, guid: b1d40cdd3aa0e144a9755a0bb0a654f1, type: 3}
+    - {fileID: 21300000, guid: 6771f25f307b80847b46f533cdad711e, type: 3}
     - {fileID: 21300000, guid: 635b5274e8f935748877eff4966dfb33, type: 3}
     - {fileID: 21300000, guid: 23e3875044caf5e46bdc27373d1f978a, type: 3}
     - {fileID: 21300000, guid: a281731e542e5254ebf033328a188e1d, type: 3}
@@ -80,4 +80,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.25
+    functionName: MeleeAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
