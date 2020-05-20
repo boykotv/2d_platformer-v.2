@@ -72,7 +72,7 @@ public abstract class Character : MonoBehaviour
 
     public void MeleeAttack()
     {
-        swordCollider.enabled = true;
+        SwordCollider.enabled = true;
     }
 
     public virtual void OnTriggerEnter2D(Collider2D other)

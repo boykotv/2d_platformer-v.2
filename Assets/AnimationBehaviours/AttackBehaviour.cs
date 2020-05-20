@@ -29,8 +29,8 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.GetComponent<Character>().Attack = false;
         animator.GetComponent<Character>().SwordCollider.enabled = false;
-        animator.GetComponent<Character>().MeleeAttack();
         animator.ResetTrigger("attack");
         animator.ResetTrigger("bow");
     }
