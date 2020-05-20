@@ -18,7 +18,6 @@ public class PatrolState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("Enemy: Patrol");
         Patrol();
         enemy.Move();
 
@@ -38,6 +37,11 @@ public class PatrolState : IEnemyState
         if (other.tag == "Edge")
         {
             enemy.ChangeDirection();
+        }
+
+        if (other.tag == "Arrow")
+        {
+            enemy.Target = Player.Instance.gameObject;
         }
     }
 

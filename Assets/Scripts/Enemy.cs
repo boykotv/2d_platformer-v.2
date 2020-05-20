@@ -16,6 +16,8 @@ public class Enemy : Character
     [SerializeField]
     private float shootRange;
 
+    private Vector2 startPos;
+
     public bool InMelleRange
     {
         get
@@ -44,6 +46,7 @@ public class Enemy : Character
     public override void Start()
     {
         base.Start();
+        startPos = transform.position;
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         ChangeState(new IdleState());
     }
@@ -126,7 +129,11 @@ public class Enemy : Character
 
     public override void Death()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        MyAnimator.ResetTrigger("die");
+        MyAnimator.SetTrigger("idle");
+        health = 30;
+        transform.position = startPos;
     }
 
     public override bool IsDead

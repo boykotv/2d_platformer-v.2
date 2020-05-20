@@ -18,7 +18,6 @@ public class IdleState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("Enemy: Idle");
         Idle();
 
         if (enemy.Target != null)
@@ -34,7 +33,10 @@ public class IdleState : IEnemyState
 
     public void OnTriggerEnter(Collider2D other)
     {
-
+        if (other.tag == "Arrow")
+        {
+            enemy.Target = Player.Instance.gameObject;
+        }
     }
 
     private void Idle()

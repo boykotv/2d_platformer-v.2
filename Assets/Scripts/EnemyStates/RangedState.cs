@@ -17,7 +17,6 @@ public class RangedState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("Enemy: ArrowAttack");
         ShootAnArrow();
 
         if (enemy.InMelleRange)
