@@ -18,7 +18,7 @@ public class PatrolState : IEnemyState
 
     public void Execute()
     {
-        Debug.Log("patroling");
+        Debug.Log("Enemy: Patrol");
         Patrol();
         enemy.Move();
 

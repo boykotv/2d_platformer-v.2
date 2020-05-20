@@ -18,6 +18,7 @@ public class IdleState : IEnemyState
 
     public void Execute()
     {
+        Debug.Log("Enemy: Idle");
         Idle();
 
         if (enemy.Target != null)
