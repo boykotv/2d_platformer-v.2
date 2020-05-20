@@ -143,7 +143,7 @@ public class Player : Character
             MyAnimator.SetTrigger("attack");
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && MyRigidbody.velocity.x != 0)
         {
             MyAnimator.SetTrigger("slide");
         }
