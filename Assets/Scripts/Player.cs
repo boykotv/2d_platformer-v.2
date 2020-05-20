@@ -83,8 +83,7 @@ public class Player : Character
         {
             if (transform.position.y <= -14f)
             {
-                MyRigidbody.velocity = Vector2.zero;
-                transform.position = startPos;
+                Death();
             }
 
             HandleInput();
@@ -236,6 +235,11 @@ public class Player : Character
         }
     }
 
-
-
+    public override void Death()
+    {
+        MyRigidbody.velocity = Vector2.zero;
+        MyAnimator.SetTrigger("idle");
+        health = 30;
+        transform.position = startPos;
+    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Arrow
   - Sword
   - EnemySword
+  - Enemy
   layers:
   - Default
   - TransparentFX

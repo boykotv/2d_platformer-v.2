@@ -48,6 +48,8 @@ public abstract class Character : MonoBehaviour
 
     public abstract IEnumerator TakeDamage();
 
+    public abstract void Death();
+    
     public void ChangeDirection()
     {
         facingRight = !facingRight;

@@ -124,6 +124,11 @@ public class Enemy : Character
         }
     }
 
+    public override void Death()
+    {
+        Destroy(gameObject);
+    }
+
     public override bool IsDead
     {
         get
