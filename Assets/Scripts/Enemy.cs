@@ -18,6 +18,12 @@ public class Enemy : Character
 
     private Vector2 startPos;
 
+    [SerializeField]
+    private Transform leftEdge;
+
+    [SerializeField]
+    private Transform rightEdge;
+
     public bool InMelleRange
     {
         get
@@ -97,8 +103,15 @@ public class Enemy : Character
     {
         if (!Attack)
         {
-            MyAnimator.SetFloat("speed", 1);
-            transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
+            if ((GetDirection().x > 0 && transform.position.x < rightEdge.position.x) || (GetDirection().x < 0 && transform.position.x > leftEdge.position.x))
+            {
+                MyAnimator.SetFloat("speed", 1);
+                transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
+            }
+            else if (currentState is PatrolState)
+            {
+                ChangeDirection();
+            }
         }        
     }
 
