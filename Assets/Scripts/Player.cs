@@ -44,6 +44,12 @@ public class Player : Character
     [SerializeField]
     private float immortalTime;
 
+    private float direction;
+
+    private bool move;
+
+    private float btnHorizontal;
+
     private SpriteRenderer spriteRenderer;
 
     public Rigidbody2D MyRigidbody { get; set; }
@@ -99,8 +105,18 @@ public class Player : Character
 
             OnGround = IsGrounded();
 
-            HandleMovement(horizontal);
-            Flip(horizontal);
+            if (move)
+            {
+                this.btnHorizontal = Mathf.Lerp(btnHorizontal, direction, Time.deltaTime * 5);
+                HandleMovement(btnHorizontal);
+                Flip(direction);
+            }
+            else
+            {
+                HandleMovement(horizontal);
+                Flip(horizontal);
+            }
+            
             HandleLayers();
         }
     }
@@ -242,4 +258,39 @@ public class Player : Character
         health = 30;
         transform.position = startPos;
     }
+
+    public void BtnJump()
+    {
+        MyAnimator.SetTrigger("jump");
+        Jump = true;
+    }
+
+    public void BtnAttack()
+    {
+        MyAnimator.SetTrigger("attack");
+    }
+
+    public void BtnSlide()
+    {
+        MyAnimator.SetTrigger("slide");
+    }
+
+    public void BtnShoot()
+    {
+        MyAnimator.SetTrigger("bow");
+    }
+
+    public void BtnMove(float direction)
+    {
+        this.direction = direction;
+        this.move = true;
+    }
+
+    public void BtnStopMove()
+    {
+        this.direction = 0;
+        this.btnHorizontal = 0;
+        this.move = false;
+    }
+
 }
