@@ -12,7 +12,6 @@ public class Player : Character
 
     public event DeadEventHandler Dead;
 
-    [SerializeField]
     private Stat healthStat;
 
     public static Player Instance 
@@ -67,11 +66,11 @@ public class Player : Character
     {
         get
         {
-            if (healthStat.CurrentVal <= 0)
+            if (health <= 0)
             {
                 OnDead();
             }
-            return healthStat.CurrentVal <= 0;
+            return health <= 0;
         }
     }
 
@@ -84,7 +83,6 @@ public class Player : Character
         startPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
-        healthStat.Initialize();
     }
 
     void Update()
@@ -236,7 +234,7 @@ public class Player : Character
     {
         if (!immortal)
         {
-            healthStat.CurrentVal -= 10;
+            health -= 10;
             if (!IsDead)
             {
                 MyAnimator.SetTrigger("damage");
@@ -259,7 +257,7 @@ public class Player : Character
     {
         MyRigidbody.velocity = Vector2.zero;
         MyAnimator.SetTrigger("idle");
-        healthStat.CurrentVal = healthStat.MaxVal;
+        health = 30;
         transform.position = startPos;
     }
 

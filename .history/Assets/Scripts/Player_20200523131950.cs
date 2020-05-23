@@ -84,7 +84,6 @@ public class Player : Character
         startPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
-        healthStat.Initialize();
     }
 
     void Update()
