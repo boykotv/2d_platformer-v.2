@@ -17,7 +17,7 @@ public abstract class Character : MonoBehaviour
     protected GameObject arrowPrepfab;
 
     [SerializeField]
-    protected int health;
+    protected Stat healthStat;
 
     [SerializeField]
     private EdgeCollider2D swordCollider;
@@ -38,6 +38,7 @@ public abstract class Character : MonoBehaviour
     {
         facingRight = true;
         MyAnimator = GetComponent<Animator>();
+        healthStat.Initialize();
     }
 
     // Update is called once per frame

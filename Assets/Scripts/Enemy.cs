@@ -24,6 +24,8 @@ public class Enemy : Character
     [SerializeField]
     private Transform rightEdge;
 
+    private Canvas healthCanvas;
+
     public bool InMelleRange
     {
         get
@@ -55,6 +57,8 @@ public class Enemy : Character
         startPos = transform.position;
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         ChangeState(new IdleState());
+
+        healthCanvas = transform.GetComponentInChildren<Canvas>();
     }
 
     // Update is called once per frame
@@ -128,7 +132,11 @@ public class Enemy : Character
 
     public override IEnumerator TakeDamage()
     {
-        health -= 10;
+        if (!healthCanvas.isActiveAndEnabled)
+        {
+            healthCanvas.enabled = true;
+        }
+        healthStat.CurrentVal -= 10;
         if (!IsDead)
         {
             MyAnimator.SetTrigger("damage");
@@ -142,18 +150,18 @@ public class Enemy : Character
 
     public override void Death()
     {
-        //Destroy(gameObject);
         MyAnimator.ResetTrigger("die");
         MyAnimator.SetTrigger("idle");
-        health = 30;
+        healthStat.CurrentVal = healthStat.MaxVal;
         transform.position = startPos;
+        healthCanvas.enabled = false;
     }
 
     public override bool IsDead
     {
         get
         {
-            return health <= 0;
+            return healthStat.CurrentVal <= 0;
         }
     }
 

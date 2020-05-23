@@ -12,9 +12,6 @@ public class Player : Character
 
     public event DeadEventHandler Dead;
 
-    [SerializeField]
-    private Stat healthStat;
-
     public static Player Instance 
     {
         get
@@ -84,7 +81,6 @@ public class Player : Character
         startPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
-        healthStat.Initialize();
     }
 
     void Update()
