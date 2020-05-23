@@ -143,13 +143,17 @@ public class Enemy : Character
         }
         else
         {
+            GameObject coin = (GameObject)Instantiate(GameManager.Instance.CoinPrefab, new Vector3(transform.position.x, transform.position.y + 2), Quaternion.identity);
+            
+            Physics2D.IgnoreCollision(coin.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
             MyAnimator.SetTrigger("die");
             yield return null;
         }
     }
 
     public override void Death()
-    {
+    {   
         MyAnimator.ResetTrigger("die");
         MyAnimator.SetTrigger("idle");
         healthStat.CurrentVal = healthStat.MaxVal;

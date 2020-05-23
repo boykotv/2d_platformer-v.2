@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathBehaviour : StateMachineBehaviour
+public class SpinBehaviour : StateMachineBehaviour
 {
+    private float spinTime = 3;
 
-    private float respawnTime = 5;
-    private float deathTimer;
+    private float elapsed;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        deathTimer = 0;
+        elapsed = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        deathTimer += Time.deltaTime;
-        if (deathTimer >= respawnTime)
+        elapsed += Time.deltaTime;
+
+        if (elapsed >= spinTime)
         {
-            deathTimer = 0;
-            animator.GetComponent<Character>().Death();
+            animator.SetTrigger("spin");
         }
     }
 

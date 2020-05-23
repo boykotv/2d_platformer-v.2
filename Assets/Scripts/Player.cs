@@ -293,4 +293,13 @@ public class Player : Character
         this.move = false;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Coin")
+        {
+            GameManager.Instance.CollectedCoins++;
+            Destroy(other.gameObject);
+        }
+    }
+
 }
