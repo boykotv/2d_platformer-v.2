@@ -5,7 +5,6 @@ using System;
 
 public class Enemy : Character
 {
-
     private IEnemyState currentState;
 
     public GameObject Target { get; set; }
@@ -50,6 +49,13 @@ public class Enemy : Character
         }
     }
 
+    public override bool IsDead
+    {
+        get
+        {
+            return healthStat.CurrentVal <= 0;
+        }
+    }
     // Start is called before the first frame update
     public override void Start()
     {
@@ -161,12 +167,16 @@ public class Enemy : Character
         healthCanvas.enabled = false;
     }
 
-    public override bool IsDead
+    public override void ChangeDirection()
     {
-        get
-        {
-            return healthStat.CurrentVal <= 0;
-        }
+        Transform tmp = transform.FindChild("EnemyHealthBarCanvas").transform;
+        Vector3 pos = tmp.position;
+        tmp.SetParent(null);
+
+        base.ChangeDirection();
+
+        tmp.SetParent(transform);
+        tmp.position = pos;
     }
 
 }

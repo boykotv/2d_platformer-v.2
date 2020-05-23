@@ -51,7 +51,7 @@ public abstract class Character : MonoBehaviour
 
     public abstract void Death();
     
-    public void ChangeDirection()
+    public virtual void ChangeDirection()
     {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, 1);
