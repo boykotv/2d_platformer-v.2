@@ -12,17 +12,7 @@ public class Player : Character
 
     public event DeadEventHandler Dead;
 
-    public static Player Instance 
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = GameObject.FindObjectOfType<Player>();
-            }
-            return instance;
-        }
-    }
+    private IUseable useable;
 
     [SerializeField]
     private Transform[] groundPoints;
@@ -65,6 +55,18 @@ public class Player : Character
 
     public bool OnGround { get; set; }
 
+    public static Player Instance 
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<Player>();
+            }
+            return instance;
+        }
+    }
+
     public override bool IsDead 
     {
         get
@@ -83,7 +85,7 @@ public class Player : Character
     public override void Start()
     {
         base.Start();
-        OnLadder = true;
+        OnLadder = false;
         startPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
@@ -178,6 +180,10 @@ public class Player : Character
         {
             MyAnimator.SetTrigger("bow");
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Use();
+        }
     }
 
     private void Flip(float horizontal)
@@ -270,6 +276,14 @@ public class Player : Character
         transform.position = startPos;
     }
 
+    private void Use()
+    {
+        if (useable != null)
+        {
+            useable.Use();
+        }
+    }
+
     public void BtnJump()
     {
         MyAnimator.SetTrigger("jump");
@@ -310,6 +324,24 @@ public class Player : Character
         {
             GameManager.Instance.CollectedCoins++;
             Destroy(other.gameObject);
+        }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Useable")
+        {
+            useable = other.GetComponent<IUseable>();
+        }
+
+        base.OnTriggerEnter2D(other);
+    }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.tag == "Useable")
+        {
+            useable = null;
         }
     }
 
