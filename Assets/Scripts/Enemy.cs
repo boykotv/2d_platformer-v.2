@@ -169,7 +169,7 @@ public class Enemy : Character
 
     public override void ChangeDirection()
     {
-        Transform tmp = transform.FindChild("EnemyHealthBarCanvas").transform;
+        Transform tmp = transform.Find("EnemyHealthBarCanvas").transform;
         Vector3 pos = tmp.position;
         tmp.SetParent(null);
 

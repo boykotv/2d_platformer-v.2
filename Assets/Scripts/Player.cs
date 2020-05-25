@@ -46,6 +46,9 @@ public class Player : Character
 
     private float direction;
 
+    [SerializeField]
+    private float climbSpeed;
+
     private bool move;
 
     private float btnHorizontal;
@@ -53,6 +56,8 @@ public class Player : Character
     private SpriteRenderer spriteRenderer;
 
     public Rigidbody2D MyRigidbody { get; set; }
+
+    public bool OnLadder { get; set; }
 
     public bool Slide { get; set; }
 
@@ -78,6 +83,7 @@ public class Player : Character
     public override void Start()
     {
         base.Start();
+        OnLadder = true;
         startPos = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         MyRigidbody = GetComponent<Rigidbody2D>();
@@ -102,18 +108,19 @@ public class Player : Character
         if (!TakingDamage && !IsDead)
         {
             float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
             OnGround = IsGrounded();
 
             if (move)
             {
                 this.btnHorizontal = Mathf.Lerp(btnHorizontal, direction, Time.deltaTime * 5);
-                HandleMovement(btnHorizontal);
+                //HandleMovement(btnHorizontal);
                 Flip(direction);
             }
             else
             {
-                HandleMovement(horizontal);
+                HandleMovement(horizontal, vertical);
                 Flip(horizontal);
             }
             
@@ -129,7 +136,7 @@ public class Player : Character
         }
     }
 
-    private void HandleMovement(float horizontal)
+    private void HandleMovement(float horizontal, float vertical)
     {
         if (MyRigidbody.velocity.y < 0)
         {
@@ -142,6 +149,10 @@ public class Player : Character
         if (Jump && MyRigidbody.velocity.y == 0)
         {
             MyRigidbody.AddForce(new Vector2(0, jumpForce));
+        }
+        if (OnLadder)
+        {
+            MyRigidbody.velocity = new Vector2(horizontal * climbSpeed, vertical * climbSpeed);
         }
 
         MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));

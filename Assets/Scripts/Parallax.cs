@@ -6,9 +6,11 @@ public class Parallax : MonoBehaviour
 {
     private float length, startPos;
 
-    public GameObject cam;
+    [SerializeField]
+    private GameObject cam;
 
-    public float parallaxEffect;
+    [SerializeField]
+    private float parallaxEffect;
 
     void Start()
     {
