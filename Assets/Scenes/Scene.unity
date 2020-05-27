@@ -1510,6 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2408a82dba68213459baeeacc92f4e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformCollider: {fileID: 2081734125}
 --- !u!61 &192765924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8515,6 +8516,12 @@ Transform:
   m_Father: {fileID: 396554565}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2081734125 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8175044837005280586, guid: 035a235e50c17434a8d04dd9ba4972b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 611438992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2083771255
 PrefabInstance:
   m_ObjectHideFlags: 0
