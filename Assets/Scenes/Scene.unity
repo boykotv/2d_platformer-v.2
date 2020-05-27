@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 192765922}
   - component: {fileID: 192765923}
   - component: {fileID: 192765924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ledder
   m_TagString: Useable
   m_Icon: {fileID: 0}
@@ -1535,7 +1535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 4.5}
+  m_Size: {x: 0.35, y: 4.5}
   m_EdgeRadius: 0
 --- !u!1 &268371533
 GameObject:
@@ -3494,7 +3494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905099305}
   - component: {fileID: 905099306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3857,7 +3857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991849231}
   - component: {fileID: 991849232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4299,7 +4299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1075400456}
   - component: {fileID: 1075400457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5080,7 +5080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251552300}
   - component: {fileID: 1251552301}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6137,7 +6137,7 @@ MonoBehaviour:
   groundRadius: 0.2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 1
   airControl: 0
   jumpForce: 300
   immortalTime: 3
@@ -7236,7 +7236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1731744927}
   - component: {fileID: 1731744928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7988,7 +7988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870627805}
   - component: {fileID: 1870627806}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8190,7 +8190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000269313}
   - component: {fileID: 2000269314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: jungle tileset_6 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
