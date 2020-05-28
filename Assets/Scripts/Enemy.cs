@@ -25,6 +25,8 @@ public class Enemy : Character
 
     private Canvas healthCanvas;
 
+    private bool dropItem = true;
+
     public bool InMelleRange
     {
         get
@@ -122,6 +124,11 @@ public class Enemy : Character
             {
                 ChangeDirection();
             }
+            else if (currentState is RangedState)
+            {
+                Target = null;
+                ChangeState(new IdleState());
+            }
         }        
     }
 
@@ -149,9 +156,12 @@ public class Enemy : Character
         }
         else
         {
-            GameObject coin = (GameObject)Instantiate(GameManager.Instance.CoinPrefab, new Vector3(transform.position.x, transform.position.y + 2), Quaternion.identity);
-            
-            Physics2D.IgnoreCollision(coin.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            if (dropItem)
+            {
+                GameObject coin = (GameObject)Instantiate(GameManager.Instance.CoinPrefab, new Vector3(transform.position.x, transform.position.y + 2), Quaternion.identity);
+                Physics2D.IgnoreCollision(coin.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                dropItem = false;
+            }
 
             MyAnimator.SetTrigger("die");
             yield return null;
@@ -160,6 +170,7 @@ public class Enemy : Character
 
     public override void Death()
     {   
+        dropItem = true;
         MyAnimator.ResetTrigger("die");
         MyAnimator.SetTrigger("idle");
         healthStat.CurrentVal = healthStat.MaxVal;
