@@ -3871,7 +3871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948421401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.90692, y: -5.02, z: 0}
+  m_LocalPosition: {x: 9.90692, y: -4.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1711633424}
@@ -6104,7 +6104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546536832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.19, y: 3, z: 0}
+  m_LocalPosition: {x: 7.82, y: -2.14, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 1023995248}
@@ -7266,6 +7266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711633424}
   - component: {fileID: 1711633425}
+  - component: {fileID: 1711633426}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -7304,6 +7305,27 @@ MonoBehaviour:
   speed: 2
   childTransform: {fileID: 1768124169}
   transformB: {fileID: 948421402}
+--- !u!50 &1711633426
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711633423}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1727849266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7582,6 +7604,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711633424}
     m_Modifications:
+    - target: {fileID: 2793892053877840107, guid: 035a235e50c17434a8d04dd9ba4972b1,
+        type: 3}
+      propertyPath: m_ColliderMask.m_Bits
+      value: 3072
+      objectReference: {fileID: 0}
     - target: {fileID: 8175044837005280584, guid: 035a235e50c17434a8d04dd9ba4972b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7646,6 +7673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8175044837005280588, guid: 035a235e50c17434a8d04dd9ba4972b1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035a235e50c17434a8d04dd9ba4972b1, type: 3}

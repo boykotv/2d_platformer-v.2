@@ -81,6 +81,14 @@ public class Player : Character
 
     private Vector2 startPos;
 
+    public bool IsFalling
+    {
+        get
+        {
+            return MyRigidbody.velocity.y < 0;
+        }
+    }
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -140,8 +148,9 @@ public class Player : Character
 
     private void HandleMovement(float horizontal, float vertical)
     {
-        if (MyRigidbody.velocity.y < 0)
+        if (IsFalling)
         {
+            gameObject.layer = 11;
             MyAnimator.SetBool("land", true);
         }
         if (!Attack && !Slide && (OnGround || airControl))
@@ -163,7 +172,7 @@ public class Player : Character
 
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !OnLadder)
+        if (Input.GetKeyDown(KeyCode.Space) && !OnLadder && !IsFalling)
         {
             MyAnimator.SetTrigger("jump");
         }
